@@ -58,7 +58,9 @@ type AssetManagementChaincode struct {
 
 // Init initialization
 func (t *AssetManagementChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+	myLogger.Info("Test1 *************************************")
 	myLogger.Info("[AssetManagementChaincode] Init")
+	myLogger.Info("Test2 *************************************")
 	if len(args) != 0 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 0")
 	}
@@ -75,13 +77,16 @@ func (t *AssetManagementChaincode) Init(stub shim.ChaincodeStubInterface, functi
 	// Set the role of the users that are allowed to assign assets
 	// The metadata will contain the role of the users that are allowed to assign assets
 	assignerRole, err := stub.GetCallerMetadata()
+	myLogger.Info("Test3 *************************************")
 	fmt.Printf("Assiger role is %v\n", string(assignerRole))
-
+	myLogger.Info("Test4 *************************************")
 	if err != nil {
+		myLogger.Info("Test5 *************************************")
 		return nil, fmt.Errorf("Failed getting metadata, [%v]", err)
 	}
 
 	if len(assignerRole) == 0 {
+		myLogger.Info("Test6 *************************************")
 		return nil, errors.New("Invalid assigner role. Empty.")
 	}
 
